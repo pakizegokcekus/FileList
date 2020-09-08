@@ -19,34 +19,41 @@ namespace FileList
             InitializeComponent();
         }
 
-        public void FileSelect()
+
+         void DirSearch_ex3(string sDir)
         {
+           
             try
             {
-                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+              
+                foreach (string f in Directory.GetFiles(sDir))
                 {
-                    txtFilePath.Text = folderBrowserDialog1.SelectedPath.ToString();
-                    string dosyaYolu = txtFilePath.Text;
+                    listBox1.Items.Add(f);
+                }
 
-                    var tumDosyalar = Directory.GetFiles(txtFilePath.Text, "*.*", SearchOption.AllDirectories);
-                    foreach (var dosya in tumDosyalar)
-                    {
-                        listBox1.Items.Add(dosya);
-                    }
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    DirSearch_ex3(d);
                 }
 
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
-                Console.Write(e);
-                throw;
+                Console.WriteLine(e);
             }
-
         }
+
+
 
         private void btnFilePath_Click(object sender, EventArgs e)
         {
-            FileSelect();
+            listBox1.Items.Clear();
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtFilePath.Text = folderBrowserDialog1.SelectedPath.ToString();
+            }
+
+            DirSearch_ex3(txtFilePath.Text);
         }
     }
 }
