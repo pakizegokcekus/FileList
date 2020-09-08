@@ -1,0 +1,10 @@
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\FileList.exe.config
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\FileList.exe
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\FileList.pdb
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csprojAssemblyReference.cache
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.Form1.resources
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.Properties.Resources.resources
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csproj.GenerateResource.cache
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csproj.CoreCompileInputs.cache
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.exe
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.pdb
