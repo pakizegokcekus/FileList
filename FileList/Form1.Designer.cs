@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnFilePath = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnWatch = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.clmnFilePath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmnFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,14 +42,17 @@
             this.clmnCreateTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmnUpdateTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.timerChange = new System.Windows.Forms.Timer(this.components);
             this.pnlTop.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFilePath
             // 
             this.btnFilePath.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFilePath.Location = new System.Drawing.Point(674, 12);
+            this.btnFilePath.Location = new System.Drawing.Point(702, 12);
             this.btnFilePath.Name = "btnFilePath";
             this.btnFilePath.Size = new System.Drawing.Size(107, 23);
             this.btnFilePath.TabIndex = 0;
@@ -59,7 +65,7 @@
             this.txtFilePath.Location = new System.Drawing.Point(12, 12);
             this.txtFilePath.Multiline = true;
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(650, 23);
+            this.txtFilePath.Size = new System.Drawing.Size(684, 23);
             this.txtFilePath.TabIndex = 1;
             // 
             // pnlTop
@@ -70,18 +76,39 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(795, 54);
+            this.pnlTop.Size = new System.Drawing.Size(820, 54);
             this.pnlTop.TabIndex = 3;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.listBox1);
+            this.panel1.Controls.Add(this.btnWatch);
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 289);
+            this.panel1.Size = new System.Drawing.Size(820, 379);
             this.panel1.TabIndex = 4;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(163, 280);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(281, 95);
+            this.listBox1.TabIndex = 3;
+            // 
+            // btnWatch
+            // 
+            this.btnWatch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnWatch.Location = new System.Drawing.Point(688, 283);
+            this.btnWatch.Name = "btnWatch";
+            this.btnWatch.Size = new System.Drawing.Size(93, 23);
+            this.btnWatch.TabIndex = 2;
+            this.btnWatch.Text = "İzlemeye Basla";
+            this.btnWatch.UseVisualStyleBackColor = true;
+            this.btnWatch.Click += new System.EventHandler(this.btnWatch_Click);
             // 
             // listView1
             // 
@@ -95,7 +122,7 @@
             this.listView1.Location = new System.Drawing.Point(12, 6);
             this.listView1.Margin = new System.Windows.Forms.Padding(5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(769, 269);
+            this.listView1.Size = new System.Drawing.Size(797, 269);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -103,7 +130,7 @@
             // clmnFilePath
             // 
             this.clmnFilePath.Text = "Dosya Yolu:";
-            this.clmnFilePath.Width = 250;
+            this.clmnFilePath.Width = 300;
             // 
             // clmnFileName
             // 
@@ -113,7 +140,7 @@
             // clmnFileSize
             // 
             this.clmnFileSize.Text = "Dosya Boyutu:";
-            this.clmnFileSize.Width = 130;
+            this.clmnFileSize.Width = 100;
             // 
             // clmnCreateTime
             // 
@@ -125,19 +152,35 @@
             this.clmnUpdateTime.Text = "Güncelleme Tarihi:";
             this.clmnUpdateTime.Width = 130;
             // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
+            this.fileSystemWatcher1.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Created);
+            this.fileSystemWatcher1.Deleted += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Deleted);
+            this.fileSystemWatcher1.Renamed += new System.IO.RenamedEventHandler(this.fileSystemWatcher1_Renamed);
+            // 
+            // timerChange
+            // 
+            this.timerChange.Interval = 1000;
+            this.timerChange.Tick += new System.EventHandler(this.timerChange_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 343);
+            this.ClientSize = new System.Drawing.Size(820, 433);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "s";
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -155,6 +198,10 @@
         private System.Windows.Forms.ColumnHeader clmnFileSize;
         private System.Windows.Forms.ColumnHeader clmnCreateTime;
         private System.Windows.Forms.ColumnHeader clmnUpdateTime;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.Button btnWatch;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Timer timerChange;
     }
 }
 
