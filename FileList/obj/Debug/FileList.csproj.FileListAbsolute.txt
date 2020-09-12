@@ -8,3 +8,8 @@ C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csproj.Generate
 C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csproj.CoreCompileInputs.cache
 C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.exe
 C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.pdb
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\System.IO.Packaging.dll
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\System.IO.Packaging.xml
+C:\Users\pakiz\source\repos\FileList\FileList\obj\Debug\FileList.csproj.CopyComplete
+C:\Users\pakiz\source\repos\FileList\FileList\bin\Debug\DocumentFormat.OpenXml.dll
